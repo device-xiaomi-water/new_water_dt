@@ -84,9 +84,10 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_DTBOIMG_PARTITION_SIZE := 8388608
 #BOARD_USERDATAIMAGE_PARTITION_SIZE := 10555997184
-
+BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 1048576000 # 1 GB
+BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 838860800 # 800 MB
+BOARD_VENDORIMAGE_PARTITION_RESERVED_SIZE := 104857600 # 100 MB
 PRODUCT_FS_COMPRESSION := 1
-
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system/system_ext
@@ -104,7 +105,7 @@ BOARD_XIAOMI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     vendor \
     system
 
-BOARD_XIAOMI_DYNAMIC_PARTITIONS_SIZE := $(shell expr $(BOARD_SUPER_PARTITION_SIZE) - 4194304)
+BOARD_XIAOMI_DYNAMIC_PARTITIONS_SIZE := 3753902080
 
 # Platform
 BOARD_HAS_MTK_HARDWARE := true
@@ -148,33 +149,18 @@ BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX_LOCATION := 3
 # HIDL
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.biometrics.fingerprint@2.1-service.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.boot@1.2.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.cas@1.2-service-lazy.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.dumpstate@1.1-service.xiaomi.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.health@2.1.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.security.keymint-service.mitee.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.security.secureclock-service.mitee.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.security.sharedsecret-service.mitee.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.usb@1.2-service-mediatekv2.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.wifi.hostapd.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.wifi.supplicant.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/android.hardware.wifi@1.0-service.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/gnss-default.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/gnss@2.1-service.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/lbs_hidl_service@1.0.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/lights-mtk-default.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest_android.hardware.drm@1.4-service.clearkey.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest_android.hardware.drm@1.4-service.widevine.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest_hwcomposer.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest_media_c2_V1_2_default.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/power-default.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/vendor.xiaomi.hardware.misys@1.0.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/vendor.xiaomi.hardware.misys@2.0.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/vendor.xiaomi.hardware.misys@3.0.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/vibrator-mtk-default.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/framework_compatibility_matrix.xml
 
 # Inherit the proprietary files
 -include vendor/xiaomi/water/BoardConfigVendor.mk
--include device/xiaomi/water/vendor_prop.mk
